@@ -19,4 +19,10 @@ export class TaskService {
   deleteTask(task: Task): Observable<Task> {
     return this.http.delete<Task>(`${this.api}/${task.id}`);
   }
+
+  updateTaskReminder(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.api}/${task.id}`, task, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
+  }
 }
