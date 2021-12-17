@@ -4,6 +4,10 @@ import { Observable, of } from 'rxjs';
 import { TASKS } from 'src/app/mock-tasks';
 import { Task } from 'src/app/types';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,8 +25,10 @@ export class TaskService {
   }
 
   updateTaskReminder(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.api}/${task.id}`, task, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    });
+    return this.http.put<Task>(`${this.api}/${task.id}`, task, httpOptions);
+  }
+
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.api, task, httpOptions);
   }
 }
