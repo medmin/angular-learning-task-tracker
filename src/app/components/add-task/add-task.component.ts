@@ -27,7 +27,7 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    if (!this.text || !this.day || !this.reminder) {
+    if (!this.text || !this.day) {
       alert('Fill the form');
       return;
     }
